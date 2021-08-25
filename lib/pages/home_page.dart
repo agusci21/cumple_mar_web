@@ -11,12 +11,15 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       body:Stack(
         children: [
+          Container(height: double.infinity, width: double.infinity, color: Color.fromRGBO(178, 186, 187, 1),),
           Positioned(child: _AppBar(),left: 0,top: 0,),
+          _BodyScroll()
         ],
       )
     );
   }
 }
+
 
 class _AppBar extends StatelessWidget {
 
@@ -82,4 +85,34 @@ class _AppBar extends StatelessWidget {
       ),
     );
   } 
+}
+
+class _BodyScroll extends StatelessWidget {
+  const _BodyScroll({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+
+    double screenHeight = MediaQuery.of(context).size.height;
+    double screenwidth = MediaQuery.of(context).size.width;
+
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          Container(height: screenHeight * 0.2,),
+          Container(color: Colors.red, margin: EdgeInsets.all(5),height: 150, width:screenwidth * 0.7 ,),
+          Container(color: Colors.yellow, margin: EdgeInsets.all(5),height: 150, width: screenwidth * 0.7,),
+          Container(color: Colors.blue, margin: EdgeInsets.all(5),height: 150, width: screenwidth * 0.7,),
+          Container(color: Colors.pink, margin: EdgeInsets.all(5),height: 150, width: screenwidth * 0.7,),
+          Container(color: Colors.red, margin: EdgeInsets.all(5),height: 150, width:screenwidth * 0.7 ,),
+          Container(color: Colors.yellow, margin: EdgeInsets.all(5),height: 150, width: screenwidth * 0.7,),
+          Container(color: Colors.blue, margin: EdgeInsets.all(5),height: 150, width: screenwidth * 0.7,),
+          Container(color: Colors.pink, margin: EdgeInsets.all(5),height: 150, width: screenwidth * 0.7,),
+        ],
+      ),
+    );
+  }
 }
