@@ -1,53 +1,31 @@
-// To parse this JSON data, do
-//
-//     final cumpleMarDefaultRtdbExport1 = cumpleMarDefaultRtdbExport1FromMap(jsonString);
-
 import 'dart:convert';
 
-class CumpleMarDefaultRtdbExport1 {
-    CumpleMarDefaultRtdbExport1({
-        required this.card,
-    });
+class Card{
 
-    Card card;
+  Card({
+    required this.name,
+    required this.messaje,
+    this.photoUrl,
+  });
 
-    factory CumpleMarDefaultRtdbExport1.fromJson(String str) => CumpleMarDefaultRtdbExport1.fromMap(json.decode(str));
+  String name;
+  String messaje;
+  String? photoUrl;
 
-    String toJson() => json.encode(toMap());
+  factory Card.fromJson(String str) => Card.fromMap(json.decode(str));
 
-    factory CumpleMarDefaultRtdbExport1.fromMap(Map<String, dynamic> json) => CumpleMarDefaultRtdbExport1(
-        card: Card.fromMap(json["card"]),
-    );
+  String toJson() => json.encode(toMap());
 
-    Map<String, dynamic> toMap() => {
-        "card": card.toMap(),
-    };
-}
+  factory Card.fromMap(Map<String, String> json) => Card(
+    name: json["name"] as String,
+    messaje: json["messaje"] as String,
+    photoUrl: json["photoUrl"],
+  );
 
-class Card {
-    Card({
-        required this.mesage,
-        required this.name,
-        this.photoUrl,
-    });
+  Map<String, String> toMap() => {
+    "name" : name,
+    "messaje" : messaje,
+    "photoUrl" : photoUrl as String,
+  };
 
-    String mesage;
-    String name;
-    String? photoUrl;
-
-    factory Card.fromJson(String str) => Card.fromMap(json.decode(str));
-
-    String toJson() => json.encode(toMap());
-
-    factory Card.fromMap(Map<String, dynamic> json) => Card(
-        mesage: json["mesage"],
-        name: json["name"],
-        photoUrl: json["photoUrl"],
-    );
-
-    Map<String, dynamic> toMap() => {
-        "mesage": mesage,
-        "name": name,
-        "photoUrl": photoUrl,
-    };
 }
