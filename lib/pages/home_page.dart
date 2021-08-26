@@ -1,3 +1,4 @@
+import 'package:cumple_mar/widgets/card_widget.dart';
 import 'package:flutter/material.dart';
 
 import 'package:cumple_mar/theme/theme.dart';
@@ -11,9 +12,9 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       body:Stack(
         children: [
-          Container(height: double.infinity, width: double.infinity, color: Color.fromRGBO(178, 186, 187, 1),),
+          Container(height: double.infinity, width: double.infinity, color: Color.fromRGBO(178, 186, 187, 1),),//FONDO
+          _BodyScroll(),
           Positioned(child: _AppBar(),left: 0,top: 0,),
-          _BodyScroll()
         ],
       )
     );
@@ -98,21 +99,22 @@ class _BodyScroll extends StatelessWidget {
     double screenHeight = MediaQuery.of(context).size.height;
     double screenwidth = MediaQuery.of(context).size.width;
 
-    return SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Container(height: screenHeight * 0.2,),
-          Container(color: Colors.red, margin: EdgeInsets.all(5),height: 150, width:screenwidth * 0.7 ,),
-          Container(color: Colors.yellow, margin: EdgeInsets.all(5),height: 150, width: screenwidth * 0.7,),
-          Container(color: Colors.blue, margin: EdgeInsets.all(5),height: 150, width: screenwidth * 0.7,),
-          Container(color: Colors.pink, margin: EdgeInsets.all(5),height: 150, width: screenwidth * 0.7,),
-          Container(color: Colors.red, margin: EdgeInsets.all(5),height: 150, width:screenwidth * 0.7 ,),
-          Container(color: Colors.yellow, margin: EdgeInsets.all(5),height: 150, width: screenwidth * 0.7,),
-          Container(color: Colors.blue, margin: EdgeInsets.all(5),height: 150, width: screenwidth * 0.7,),
-          Container(color: Colors.pink, margin: EdgeInsets.all(5),height: 150, width: screenwidth * 0.7,),
-        ],
-      ),
-    );
+    return GridView.count(
+          crossAxisCount: 2,
+          mainAxisSpacing: 5,
+          crossAxisSpacing: 5,
+          children: [
+            CardWidget(),
+            CardWidget(),
+            CardWidget(),
+            CardWidget(),
+            CardWidget(),
+            CardWidget(),
+            CardWidget(),
+            CardWidget(),
+            CardWidget(),
+            CardWidget(),
+          ],
+        );
   }
 }
