@@ -8,10 +8,11 @@ class CardWidget extends StatelessWidget {
     double screeHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
     return Container(
-      height: screeHeight * 0.15,
+      //height: screeHeight * 0.25,
+      height: 20,
       width: screenWidth * 0.8 ,
-      //margin: EdgeInsets.symmetric(vertical: 20, horizontal: 15),
       decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(15),
         color: Colors.red
       ),
       child: ListTile(

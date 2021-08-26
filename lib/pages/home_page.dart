@@ -99,22 +99,26 @@ class _BodyScroll extends StatelessWidget {
     double screenHeight = MediaQuery.of(context).size.height;
     double screenwidth = MediaQuery.of(context).size.width;
 
-    return GridView.count(
-          crossAxisCount: 2,
-          mainAxisSpacing: 5,
-          crossAxisSpacing: 5,
-          children: [
-            CardWidget(),
-            CardWidget(),
-            CardWidget(),
-            CardWidget(),
-            CardWidget(),
-            CardWidget(),
-            CardWidget(),
-            CardWidget(),
-            CardWidget(),
-            CardWidget(),
-          ],
-        );
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 10),
+      margin: EdgeInsets.only(top: screenHeight * 0.18),
+      child: GridView.count(
+            crossAxisCount: 2,
+            mainAxisSpacing: 5,
+            crossAxisSpacing: 5,
+            children: [
+              CardWidget(),
+              CardWidget(),
+              CardWidget(),
+              CardWidget(),
+              CardWidget(),
+              CardWidget(),
+              CardWidget(),
+              CardWidget(),
+              CardWidget(),
+              CardWidget(),
+            ],
+          ),
+    );
   }
 }
