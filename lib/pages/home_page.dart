@@ -1,7 +1,12 @@
+import 'dart:convert';
+
+import 'package:cumple_mar/services/card_services.dart';
 import 'package:cumple_mar/widgets/card_widget.dart';
 import 'package:flutter/material.dart';
 
 import 'package:cumple_mar/theme/theme.dart';
+import 'package:provider/provider.dart';
+import 'package:http/http.dart' as http;
 
 class HomePage extends StatelessWidget {
   
@@ -9,7 +14,18 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    //final cardService = Provider.of<CardsService>(context);
+    String url = 'https://cumple-mar-d195a-default-rtdb.firebaseio.com/cards.json';
+
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: ()async{
+          final resp = await http.get(Uri.parse(url));
+          Map respMap = await jsonDecode(resp.body);
+          print(respMap);
+        },
+      ),
       body:Stack(
         children: [
           Container(height: double.infinity, width: double.infinity, color: Color.fromRGBO(178, 186, 187, 1),),//FONDO
