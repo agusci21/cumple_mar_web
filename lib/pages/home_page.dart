@@ -16,6 +16,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
 
     final cardService = Provider.of<CardServices>(context);
+    List cardList = cardService.cardList;
     
 
     return Scaffold(
@@ -110,29 +111,24 @@ class _BodyScroll extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
+    final cardService = Provider.of<CardServices>(context);
+    List cardList = cardService.cardList;
+    
+
     double screenHeight = MediaQuery.of(context).size.height;
     double screenwidth = MediaQuery.of(context).size.width;
 
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 10),
       margin: EdgeInsets.only(top: screenHeight * 0.18),
-      child: GridView.count(
-            crossAxisCount: 2,
-            mainAxisSpacing: 5,
-            crossAxisSpacing: 5,
-            children: [
-              CardWidget(),
-              CardWidget(),
-              CardWidget(),
-              CardWidget(),
-              CardWidget(),
-              CardWidget(),
-              CardWidget(),
-              CardWidget(),
-              CardWidget(),
-              CardWidget(),
-            ],
-          ),
+      child: ListView.builder(
+        itemCount: cardList.length,
+        itemBuilder: (context, index){
+          return ListTile(
+            title: Text(cardList[index]),
+          );
+        },
+      )
     );
   }
 }
