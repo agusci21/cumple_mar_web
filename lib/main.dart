@@ -4,21 +4,22 @@ import 'package:provider/provider.dart';
 
 import 'pages/pages.dart';
  
-void main() => runApp(MyApp());
+void main() => runApp(AppState());
 
-// class AppState extends StatelessWidget {
-//   const AppState({Key? key}) : super(key: key);
+class AppState extends StatelessWidget {
+  const AppState({Key? key}) : super(key: key);
 
-//   @override
-//   Widget build(BuildContext context) {
-//     return MultiProvider(
-//       providers: [
-//         ChangeNotifierProvider(create: (BuildContext context) => CardsService())
-//       ],
-//       child: MyApp(),
-//     );
-//   }
-// }
+  @override
+  Widget build(BuildContext context) {
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => CardServices() )
+      ],
+      child: MyApp(),
+    );
+  }
+}
+
  
 class MyApp extends StatelessWidget {
   @override

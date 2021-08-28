@@ -15,15 +15,13 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    //final cardService = Provider.of<CardsService>(context);
-    String url = 'https://cumple-mar-d195a-default-rtdb.firebaseio.com/cards.json';
+    final cardService = Provider.of<CardServices>(context);
+    
 
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        onPressed: ()async{
-          final resp = await http.get(Uri.parse(url));
-          Map respMap = await jsonDecode(resp.body);
-          print(respMap);
+        onPressed: (){
+          cardService.loadCards();
         },
       ),
       body:Stack(
