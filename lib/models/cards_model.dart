@@ -1,22 +1,24 @@
 import 'dart:convert';
 
-class Card{
+class Cards{
 
-  Card({
+  Cards({
     required this.name,
     required this.messaje,
     this.photoUrl,
+    this.id,
   });
 
   String name;
   String messaje;
   String? photoUrl;
+  String? id;
 
-  factory Card.fromJson(String str) => Card.fromMap(json.decode(str));
+  factory Cards.fromJson(String str) => Cards.fromMap(json.decode(str));
 
   String toJson() => json.encode(toMap());
 
-  factory Card.fromMap(Map<String, String> json) => Card(
+  factory Cards.fromMap(Map<String, String> json) => Cards(
     name: json["name"] as String,
     messaje: json["messaje"] as String,
     photoUrl: json["photoUrl"],

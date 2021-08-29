@@ -2,26 +2,30 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:cumple_mar/models/card_model.dart' as my;
+import 'package:cumple_mar/models/cards_model.dart';
 
 class CardServices extends ChangeNotifier{
 
   String url = 'https://cumple-mar-d195a-default-rtdb.firebaseio.com/cards.json';
-  final List cardList = [];
-  var jsonCoded;
-  late Map<String, dynamic> jsonDecoded;
+  final List<Cards> cardList = [];
 
-  loadCards()async{
+  CardServices(){
+    loadCards();
+  }
 
-    jsonCoded = await http.get(Uri.parse(url));
-    jsonDecoded = jsonDecode(jsonCoded.body);
-    jsonDecoded.forEach((key, value) {
-      cardList.add(key);
+   loadCards()async{
+
+    final resp = await http.get(Uri.parse(url));
+    final Map cardsMap = json.decode(resp.body);
+
+    cardsMap.forEach((key, value) {
+      final tempCard = Cards.fromMap(value);
+      print(tempCard);
     });
 
-    print(jsonDecoded);
-    print('LISTA ACA $cardList');
-   
+    print ('CARDMAP: $cardsMap');
+    print(cardsMap is Map);
+
   }
   
   

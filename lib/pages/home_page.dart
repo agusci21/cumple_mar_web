@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:cumple_mar/theme/theme.dart';
 import 'package:provider/provider.dart';
 import 'package:http/http.dart' as http;
+import 'package:cumple_mar/models/cards_model.dart';
 
 class HomePage extends StatelessWidget {
   
@@ -112,7 +113,8 @@ class _BodyScroll extends StatelessWidget {
   Widget build(BuildContext context) {
 
     final cardService = Provider.of<CardServices>(context);
-    List cardList = cardService.cardList;
+    List <Cards>cardList = cardService.cardList;
+   
     
 
     double screenHeight = MediaQuery.of(context).size.height;
@@ -125,7 +127,7 @@ class _BodyScroll extends StatelessWidget {
         itemCount: cardList.length,
         itemBuilder: (context, index){
           return ListTile(
-            title: Text(cardList[index]),
+            title: Text(cardList[index].name),
           );
         },
       )
