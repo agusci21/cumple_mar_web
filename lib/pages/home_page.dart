@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:cumple_mar/services/card_services.dart';
+import 'package:cumple_mar/services/cards_services.dart';
 import 'package:cumple_mar/widgets/card_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -16,14 +16,14 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    final cardService = Provider.of<CardServices>(context);
-    List cardList = cardService.cardList;
+    final cardsService = Provider.of<CardsService>(context);
+    
     
 
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: (){
-          cardService.loadCards();
+          
         },
       ),
       body:Stack(
@@ -112,8 +112,8 @@ class _BodyScroll extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    final cardService = Provider.of<CardServices>(context);
-    List <Cards>cardList = cardService.cardList;
+    final cardService = Provider.of<CardsService>(context);
+    
    
     
 
@@ -124,10 +124,10 @@ class _BodyScroll extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 10),
       margin: EdgeInsets.only(top: screenHeight * 0.18),
       child: ListView.builder(
-        itemCount: cardList.length,
+        itemCount: 5,
         itemBuilder: (context, index){
           return ListTile(
-            title: Text(cardList[index].name),
+            
           );
         },
       )

@@ -1,4 +1,4 @@
-import 'package:cumple_mar/services/card_services.dart';
+import 'package:cumple_mar/services/cards_services.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -13,7 +13,7 @@ class AppState extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => CardServices() )
+        ChangeNotifierProvider(create: (_) => CardsService() )
       ],
       child: MyApp(),
     );

@@ -1,33 +1,34 @@
+// To parse this JSON data, do
+//
+//     final cards = cardsFromMap(jsonString);
+
 import 'dart:convert';
 
-class Cards{
+class Cards {
+    Cards({
+        required this.message,
+        required this.name,
+        this.picture,
+    });
 
-  Cards({
-    required this.name,
-    required this.messaje,
-    this.photoUrl,
-    this.id,
-  });
+    String message;
+    String name;
+    String? picture;
+    String? id;
 
-  String name;
-  String messaje;
-  String? photoUrl;
-  String? id;
+    factory Cards.fromJson(String str) => Cards.fromMap(json.decode(str));
 
-  factory Cards.fromJson(String str) => Cards.fromMap(json.decode(str));
+    String toJson() => json.encode(toMap());
 
-  String toJson() => json.encode(toMap());
+    factory Cards.fromMap(Map<String, dynamic> json) => Cards(
+        message: json["message"],
+        name: json["name"],
+        picture: json["picture"],
+    );
 
-  factory Cards.fromMap(Map<String, String> json) => Cards(
-    name: json["name"] as String,
-    messaje: json["messaje"] as String,
-    photoUrl: json["photoUrl"],
-  );
-
-  Map<String, String> toMap() => {
-    "name" : name,
-    "messaje" : messaje,
-    "photoUrl" : photoUrl as String,
-  };
-
+    Map<String, dynamic> toMap() => {
+        "message": message,
+        "name": name,
+        "picture": picture,
+    };
 }
