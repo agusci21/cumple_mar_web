@@ -16,7 +16,10 @@ class CardsService extends ChangeNotifier{
     this.loadCards();
   }
 
-  /*Future<List<Cards>>*/ loadCards()async{
+  Future<List<Cards>> loadCards()async{
+
+    this.isLoading = true;
+    notifyListeners();
 
     final url = Uri.https(_baseUrl, 'cards.json');
     final resp = await http.get(url);
@@ -29,6 +32,10 @@ class CardsService extends ChangeNotifier{
       this.cards.add(tempCards);
     });
 
+    this.isLoading = false;
+    notifyListeners();
+
+    return this.cards;
 
   }
   

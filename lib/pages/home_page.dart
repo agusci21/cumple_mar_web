@@ -21,11 +21,6 @@ class HomePage extends StatelessWidget {
     
 
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: (){
-          
-        },
-      ),
       body:Stack(
         children: [
           Container(height: double.infinity, width: double.infinity, color: Color.fromRGBO(178, 186, 187, 1),),//FONDO
@@ -112,9 +107,9 @@ class _BodyScroll extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    final cardService = Provider.of<CardsService>(context);
+   final cardService = Provider.of<CardsService>(context);
     
-   
+   final List<Cards> cards = cardService.cards;
     
 
     double screenHeight = MediaQuery.of(context).size.height;
@@ -124,10 +119,11 @@ class _BodyScroll extends StatelessWidget {
       padding: EdgeInsets.symmetric(horizontal: 10),
       margin: EdgeInsets.only(top: screenHeight * 0.18),
       child: ListView.builder(
-        itemCount: 5,
+        itemCount: cards.length,
         itemBuilder: (context, index){
-          return ListTile(
-            
+          return CardWidget(
+            title: cards[index].name,
+            photoUrl: cards[index].picture ?? 'https://i.imgur.com/jJ8NnQ4.gif',
           );
         },
       )

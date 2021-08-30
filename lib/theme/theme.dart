@@ -12,6 +12,10 @@ class MyTheme{
 
   static Color secondaryTextColor = Color.fromRGBO(255, 255, 255, 1);
 
+  static Color containerTextColor = Color.fromRGBO(0, 0, 0, 1);
+
+  static Color containerColor = Color.fromRGBO(255, 255, 255, 1);
+
   //TODO: Implementar fuentes
 
   //static Color secondaryColor = Color(0xD11BC5);
