@@ -6,8 +6,6 @@ import 'package:cumple_mar/models/cards_model.dart';
 
 class CardsService extends ChangeNotifier{
 
-  //String url = 'https://cumple-mar-d195a-default-rtdb.firebaseio.com/cards.json';
-  
   final String _baseUrl = 'cumple-mar-d195a-default-rtdb.firebaseio.com';
   final List<Cards>cards = [];
   bool isLoading = true;
