@@ -1,4 +1,4 @@
-import 'package:cumple_mar/providers/selected_card_provider.dart';
+
 import 'package:cumple_mar/services/cards_services.dart';
 import 'package:cumple_mar/widgets/card_widget.dart';
 import 'package:flutter/material.dart';
@@ -10,14 +10,13 @@ class CardPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    final selectedCardProvider = Provider.of<SelectedCardProvider>(context);
     final cardsService = Provider.of<CardsService>(context);
 
     return Scaffold(
       body: Column(
           children: [
-            Picture(photoUrl:cardsService.cards[selectedCardProvider.selectedCard].picture ?? ''),
-            NameText(title: cardsService.cards[selectedCardProvider.selectedCard].name),
+            Picture(photoUrl:cardsService.selectedCard.picture as String),
+            NameText(title: cardsService.selectedCard.name),
             _Messaje()
           ],
         ),

@@ -1,4 +1,4 @@
-import 'package:cumple_mar/providers/selected_card_provider.dart';
+import 'package:cumple_mar/pages/card_page.dart';
 import 'package:cumple_mar/services/cards_services.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -15,7 +15,6 @@ class AppState extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => CardsService() ),
-        ChangeNotifierProvider(create: (_) => SelectedCardProvider())
       ],
       child: MyApp(),
     );
@@ -32,6 +31,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/home',
       routes: {
         '/home' : (BuildContext context) => HomePage(),
+        '/imposibleToGuessCardPage' : (BuildContext context) => CardPage()
       },
     );
   }

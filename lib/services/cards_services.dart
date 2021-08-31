@@ -11,6 +11,7 @@ class CardsService extends ChangeNotifier{
   final String _baseUrl = 'cumple-mar-d195a-default-rtdb.firebaseio.com';
   final List<Cards>cards = [];
   bool isLoading = true;
+  late Cards selectedCard;
 
   CardsService(){
     this.loadCards();

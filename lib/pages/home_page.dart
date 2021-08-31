@@ -121,9 +121,15 @@ class _BodyScroll extends StatelessWidget {
       child: ListView.builder(
         itemCount: cards.length,
         itemBuilder: (context, index){
-          return CardWidget(
-            title: cards[index].name,
-            photoUrl: cards[index].picture ?? 'https://i.imgur.com/jJ8NnQ4.gif',
+          return GestureDetector(
+            onTap: (){
+              cardService.selectedCard = cards[index];
+              Navigator.pushNamed(context, '/imposibleToGuessCardPage');
+            },
+            child: CardWidget(
+              title: cards[index].name,
+              photoUrl: cards[index].picture ?? 'https://i.imgur.com/jJ8NnQ4.gif',
+            ),
           );
         },
       )
