@@ -18,10 +18,38 @@ class CardPage extends StatelessWidget {
         children: [
           Stack(
             children: [
+              _BodyScroll(),
               Header(),
             ],
           ),
         ],
+      ),
+    );
+  }
+}
+
+class _BodyScroll extends StatelessWidget {
+  const _BodyScroll({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+  final cardsService = Provider.of<CardsService>(context);
+    return Container(
+      width: double.infinity,
+      height: double.infinity,
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            SizedBox(height: MediaQuery.of(context).size.height * 0.2,),
+            (cardsService.selectedCard.picture == null)
+            ? Image(image: AssetImage('assets/img/no-image.png'))
+            :Picture(photoUrl:cardsService.selectedCard.picture as String),
+      
+          ],
+        ),
       ),
     );
   }
