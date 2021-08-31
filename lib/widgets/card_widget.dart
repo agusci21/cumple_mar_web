@@ -17,33 +17,39 @@ class CardWidget extends StatelessWidget {
    
     double screeHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
-    return Container(
-      margin: EdgeInsets.all(5),
-      padding: EdgeInsets.symmetric(vertical: 20, horizontal: 15),
-      width: screenWidth * 0.8 ,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15),
-        color: Colors.red
-      ),
-      child: Column(
-        children: [
-          _picture(context),
-          _nameText(),
-        ],
+    return MaterialButton(
+      onPressed: (){
+        //TODO: SETEar el valor sel selected card y navegar ahi
+      },
+      child: Container(
+        margin: EdgeInsets.all(5),
+        padding: EdgeInsets.symmetric(vertical: 20, horizontal: 15),
+        width: screenWidth * 0.8 ,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(15),
+          color: Colors.red
+        ),
+        child: Column(
+          children: [
+            Picture(photoUrl: photoUrl),
+            NameText(title: title),
+          ],
+        ),
       ),
     );
   }
+}
 
-  Text _nameText() {
-    return Text(
-          title,
-          style: TextStyle(
-            color: MyTheme.containerTextColor
-          ),
-        );
-  }
+class Picture extends StatelessWidget {
+  const Picture({
+    Key? key,
+    required this.photoUrl,
+  }) : super(key: key);
 
-  _picture(BuildContext context) {
+  final String photoUrl;
+  
+  @override
+  Widget build(BuildContext context) {
     return ClipRRect(
       borderRadius: BorderRadius.only(
             topLeft: Radius.circular(25),
@@ -65,5 +71,26 @@ class CardWidget extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class NameText extends StatelessWidget {
+  const NameText({
+    Key? key,
+    required this.title,
+  }) : super(key: key);
+
+  final String title;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+          title,
+          style: TextStyle(
+            color: MyTheme.containerTextColor,
+            fontSize: 25,
+            fontWeight: FontWeight.w700
+          ),
+        );
   }
 }
