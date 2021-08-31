@@ -46,6 +46,7 @@ class _BodyScroll extends StatelessWidget {
       color: Colors.black
     );
     return Container(
+      color: Colors.white,
       width: double.infinity,
       height: double.infinity,
       child: SingleChildScrollView(
@@ -121,7 +122,7 @@ class Header extends StatelessWidget {
       children: [
         Container(
           width: double.infinity,
-          height: double.infinity,
+          height: MediaQuery.of(context).size.height * 0.2,
           child: CustomPaint(
             painter: _HeaderWaveGradientPainter(),
           )
@@ -148,7 +149,7 @@ class _HeaderWaveGradientPainter extends CustomPainter{
   void paint(Canvas canvas, Size size) {
 
     double x = size.width;
-    double y = size.height;
+    double y  = size.height * 5;
     final Rect rect = Rect.fromCircle(
      center: Offset(size.width * 0.5 ,55),
      radius: 180
