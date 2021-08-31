@@ -20,7 +20,6 @@ class CardWidget extends StatelessWidget {
     return Container(
       margin: EdgeInsets.all(5),
       padding: EdgeInsets.symmetric(vertical: 20, horizontal: 15),
-      height: screeHeight * 0.7,
       width: screenWidth * 0.8 ,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
@@ -28,7 +27,7 @@ class CardWidget extends StatelessWidget {
       ),
       child: Column(
         children: [
-          _picture(),
+          _picture(context),
           _nameText(),
         ],
       ),
@@ -44,11 +43,26 @@ class CardWidget extends StatelessWidget {
         );
   }
 
-  _picture() {
-    return Container(
-      child: FadeInImage(
-        image: NetworkImage(photoUrl) ,
-        placeholder:AssetImage('assets/img/placeholderGif.gif') ,
+  _picture(BuildContext context) {
+    return ClipRRect(
+      borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(25),
+            topRight: Radius.circular(25),
+          ),
+      child: Container(
+        height: MediaQuery.of(context).size.height * 0.5,
+        width: MediaQuery.of(context).size.height * 0.5,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(25),
+            topRight: Radius.circular(25),
+          )
+        ),
+        child: FadeInImage(
+          fit: BoxFit.cover,
+          image: NetworkImage(photoUrl) ,
+          placeholder:AssetImage('assets/img/placeholderGif.gif') ,
+        ),
       ),
     );
   }
