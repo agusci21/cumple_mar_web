@@ -13,31 +13,119 @@ class CardPage extends StatelessWidget {
     final cardsService = Provider.of<CardsService>(context);
 
     return Scaffold(
-      body: Column(
+      
+      body: Stack(
+        children: [
+          Positioned(child: _bodyScroll(cardsService),top: MediaQuery.of(context).size.height * 0.2,),
+          Stack(
+            children: [
+              Header(),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  SingleChildScrollView _bodyScroll(CardsService cardsService) {
+    String noImage = 'assets/img/placeholderGif.gif';
+    //String noImage = 'assets/img/no-image.png';
+    return SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             (cardsService.selectedCard.picture == null)
-            ? Image(image: AssetImage('assets/img/placeholderGif.gif'))
+            ? Image(image: AssetImage(noImage))
             :Picture(photoUrl:cardsService.selectedCard.picture as String),
             NameText(title: cardsService.selectedCard.name),
-            _Messaje()
+            _Message(message: cardsService.selectedCard.message,)
           ],
         ),
     );
   }
 }
 
-class _Messaje extends StatelessWidget {
-  const _Messaje({
+class _Message extends StatelessWidget {
+  
+  const _Message({
     Key? key,
+    required this.message,
   }) : super(key: key);
+
+  final String message;
 
   @override
   Widget build(BuildContext context) {
+  
     return Container(
       child: Text(
-        //TODO: Implementar mensaaje
-        ''
+        message
       ),
     );
   }
 }
+
+class Header extends StatelessWidget {
+  const Header({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      height: double.infinity,
+      child: CustomPaint(
+        painter: _HeaderWaveGradientPainter(),
+      )
+    );
+  }
+}
+
+class _HeaderWaveGradientPainter extends CustomPainter{
+
+  @override
+  void paint(Canvas canvas, Size size) {
+
+    double x = size.width;
+    double y = size.height;
+    final Rect rect = Rect.fromCircle(
+     center: Offset(size.width * 0.5 ,55),
+     radius: 180
+    );
+
+    final Gradient gradient = LinearGradient(
+      begin: Alignment.topCenter,
+      end: Alignment.bottomCenter,
+      colors: [
+        Color(0xff615AAB), 
+        Color(0xffC012FF),
+        Color(0xff6D05FA),
+    ]
+    );
+
+    final lapiz = Paint()..shader = gradient.createShader(rect);
+    
+    lapiz.color = Colors.red;
+    lapiz.style = PaintingStyle.fill;
+    lapiz.strokeWidth = 20;
+
+    final path = Path();
+    
+    
+    path.lineTo(0, y * 0.15);
+    path.quadraticBezierTo(x * 0.25, y * 0.2, x * 0.5, y * 0.15);
+    path.quadraticBezierTo(x * 0.75, y * 0.1, x, y * 0.15);
+    path.lineTo(x, 0);
+    
+
+    canvas.drawPath(path, lapiz);
+    
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) {
+
+    return true;
+  }
+
+}
+
