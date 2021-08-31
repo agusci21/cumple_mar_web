@@ -15,7 +15,9 @@ class CardPage extends StatelessWidget {
     return Scaffold(
       body: Column(
           children: [
-            Picture(photoUrl:cardsService.selectedCard.picture as String),
+            (cardsService.selectedCard.picture == null)
+            ? Image(image: AssetImage('assets/img/placeholderGif.gif'))
+            :Picture(photoUrl:cardsService.selectedCard.picture as String),
             NameText(title: cardsService.selectedCard.name),
             _Messaje()
           ],

@@ -1,3 +1,4 @@
+
 import 'package:cumple_mar/pages/card_page.dart';
 import 'package:cumple_mar/services/cards_services.dart';
 import 'package:flutter/material.dart';
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
       initialRoute: '/home',
       routes: {
         '/home' : (BuildContext context) => HomePage(),
-        '/imposibleToGuessCardPage' : (BuildContext context) => CardPage()
+        '/imposibleToGuessCardPage' : (BuildContext context) => CardPage(),
       },
     );
   }

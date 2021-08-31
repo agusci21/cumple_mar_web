@@ -1,4 +1,3 @@
-import 'dart:convert';
 
 import 'package:cumple_mar/services/cards_services.dart';
 import 'package:cumple_mar/widgets/card_widget.dart';
@@ -6,7 +5,6 @@ import 'package:flutter/material.dart';
 
 import 'package:cumple_mar/theme/theme.dart';
 import 'package:provider/provider.dart';
-import 'package:http/http.dart' as http;
 import 'package:cumple_mar/models/cards_model.dart';
 
 class HomePage extends StatelessWidget {
@@ -16,7 +14,6 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    final cardsService = Provider.of<CardsService>(context);
     
     
 
@@ -113,7 +110,6 @@ class _BodyScroll extends StatelessWidget {
     
 
     double screenHeight = MediaQuery.of(context).size.height;
-    double screenwidth = MediaQuery.of(context).size.width;
 
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 10),
@@ -124,7 +120,7 @@ class _BodyScroll extends StatelessWidget {
           return GestureDetector(
             onTap: (){
               cardService.selectedCard = cards[index];
-              Navigator.pushNamed(context, '/imposibleToGuessCardPage');
+              Navigator.of(context).pushNamed('/imposibleToGuessCardPage');
             },
             child: CardWidget(
               title: cards[index].name,

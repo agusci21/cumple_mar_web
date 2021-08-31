@@ -15,26 +15,20 @@ class CardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
    
-    double screeHeight = MediaQuery.of(context).size.height;
     double screenWidth = MediaQuery.of(context).size.width;
-    return MaterialButton(
-      onPressed: (){
-        //TODO: SETEar el valor sel selected card y navegar ahi
-      },
-      child: Container(
-        margin: EdgeInsets.all(5),
-        padding: EdgeInsets.symmetric(vertical: 20, horizontal: 15),
-        width: screenWidth * 0.8 ,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(15),
-          color: Colors.red
-        ),
-        child: Column(
-          children: [
-            Picture(photoUrl: photoUrl),
-            NameText(title: title),
-          ],
-        ),
+    return Container(
+      margin: EdgeInsets.all(5),
+      padding: EdgeInsets.symmetric(vertical: 20, horizontal: 15),
+      width: screenWidth * 0.8 ,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(15),
+        color: Colors.red
+      ),
+      child: Column(
+        children: [
+          Picture(photoUrl: photoUrl),
+          NameText(title: title),
+        ],
       ),
     );
   }
