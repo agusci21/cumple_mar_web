@@ -1,4 +1,6 @@
 
+import 'dart:math';
+
 import 'package:cumple_mar/services/cards_services.dart';
 import 'package:cumple_mar/widgets/card_widget.dart';
 import 'package:flutter/material.dart';
@@ -35,7 +37,14 @@ class _BodyScroll extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+  final screen = MediaQuery.of(context).size;
+  int random = Random().nextInt(5);
   final cardsService = Provider.of<CardsService>(context);
+    var textStyle = TextStyle(
+      fontSize: 19,
+      fontWeight: FontWeight.w600,
+      color: Colors.black
+    );
     return Container(
       width: double.infinity,
       height: double.infinity,
@@ -43,16 +52,30 @@ class _BodyScroll extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            SizedBox(height: MediaQuery.of(context).size.height * 0.2,),
+            SizedBox(height: screen.height * 0.2,),
             (cardsService.selectedCard.picture == null)
             ? Image(image: AssetImage('assets/img/no-image.png'))
             :Picture(photoUrl:cardsService.selectedCard.picture as String),
+
+            (random == 0) ? Text('${cardsService.selectedCard.name} Te desea Feliz CUM', style: textStyle)
+            : (random == 1) ? Text('${cardsService.selectedCard.name} Te desea Feliz Cumpleaños', style: textStyle)
+             :(random == 2) ? Text('${cardsService.selectedCard.name} Te desea Feliz Cumpleaños', style: textStyle)
+              :(random == 3) ? Text('${cardsService.selectedCard.name} Te envia Saludos', style: textStyle)
+               :(random == 4) ? Text('${cardsService.selectedCard.name} Te Aprecia Muchisimo \n(Como todos)', style: textStyle)
+                : Text('${cardsService.selectedCard.name} Te Envia Alegria', style: textStyle),
+
+            SizedBox(height: screen.height * 0.05 ,),
+            _Message(
+              message: cardsService.selectedCard.message
+            ),
+
       
           ],
         ),
       ),
     );
   }
+
 }
   
 
@@ -67,7 +90,20 @@ class _Message extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-  
+   int random = Random().nextInt(5);
+   
+   switch(random){
+      case 0:
+        return Text('$message Te desea Feliz CUM');
+      case 1:
+        return Text('$message Te desea Feliz Cumpleaños');
+      case 3:
+        return Text('$message Te envia Saludos');
+      case 4:
+        return Text('$message Te Envia Alegria');
+      case 5:
+        return Text('$message Te Aprecia Muchisimo (Como todos)');
+   }
     return Container(
       child: Text(
         message
@@ -154,4 +190,5 @@ class _HeaderWaveGradientPainter extends CustomPainter{
   }
 
 }
+
 
