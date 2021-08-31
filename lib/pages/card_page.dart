@@ -16,7 +16,6 @@ class CardPage extends StatelessWidget {
       
       body: Stack(
         children: [
-          Positioned(child: _bodyScroll(cardsService),top: MediaQuery.of(context).size.height * 0.2,),
           Stack(
             children: [
               Header(),
@@ -26,24 +25,8 @@ class CardPage extends StatelessWidget {
       ),
     );
   }
-
-  SingleChildScrollView _bodyScroll(CardsService cardsService) {
-    String noImage = 'assets/img/placeholderGif.gif';
-    //String noImage = 'assets/img/no-image.png';
-    return SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            (cardsService.selectedCard.picture == null)
-            ? Image(image: AssetImage(noImage))
-            :Picture(photoUrl:cardsService.selectedCard.picture as String),
-            NameText(title: cardsService.selectedCard.name),
-            _Message(message: cardsService.selectedCard.message,)
-          ],
-        ),
-    );
-  }
 }
+  
 
 class _Message extends StatelessWidget {
   
@@ -70,12 +53,27 @@ class Header extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      height: double.infinity,
-      child: CustomPaint(
-        painter: _HeaderWaveGradientPainter(),
-      )
+    return Stack(
+      children: [
+        Container(
+          width: double.infinity,
+          height: double.infinity,
+          child: CustomPaint(
+            painter: _HeaderWaveGradientPainter(),
+          )
+        ),
+        Positioned(
+          top: MediaQuery.of(context).size.height * 0.05,
+          child: IconButton(
+            onPressed: () => Navigator.pop(context),
+            icon: Icon(
+              Icons.arrow_back,
+              size: 35,
+              color: Color.fromRGBO(255, 255, 255, 0.8),
+            )
+          ),
+        )
+      ],
     );
   }
 }
