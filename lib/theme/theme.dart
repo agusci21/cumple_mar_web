@@ -16,6 +16,10 @@ class MyTheme{
 
   static Color containerColor = Color.fromRGBO(255, 255, 255, 1);
 
+  static Color primaryCreateCardPageColor = Color.fromRGBO(124, 15, 128, 1);
+
+  static Color secondaryCreateCardPageColor = Color.fromRGBO(245, 30, 255, 0.8);
+
   //TODO: Implementar fuentes
 
   //static Color secondaryColor = Color(0xD11BC5);

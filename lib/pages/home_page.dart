@@ -1,4 +1,7 @@
 
+import 'dart:math';
+import 'dart:ui';
+
 import 'package:cumple_mar/pages/loading_page.dart';
 import 'package:cumple_mar/services/cards_services.dart';
 import 'package:cumple_mar/widgets/card_widget.dart';
@@ -22,9 +25,8 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       body:Stack(
         children: [
-          Container(height: double.infinity, width: double.infinity, color: Color.fromRGBO(178, 186, 187, 1),),//FONDO
           _BodyScroll(),
-          Positioned(child: _AppBar(),left: 0,top: 0,),
+          _AppBar(),
         ],
       )
     );
@@ -47,8 +49,9 @@ class _AppBar extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        _upperRowAppBar(screenHeight, screenWidth),
-        _lowerRowAppBar(screenHeight, screenWidth)
+        Header()
+        //_upperRowAppBar(screenHeight, screenWidth),
+        //_lowerRowAppBar(screenHeight, screenWidth)
       ],
     );
   }
@@ -56,15 +59,10 @@ class _AppBar extends StatelessWidget {
 
   Container _upperRowAppBar(double screenHeight, double screenWidth) {
     return Container(
-        height: screenHeight * 0.1,
+        height: screenHeight * 0.11,
         width: screenWidth,
         decoration: BoxDecoration(
           color: MyTheme.primaryColor,
-          // gradient: LinearGradient(
-          //   colors: [MyTheme.primaryColor, Color.fromRGBO(230, 35, 215, 1)],
-          //   begin: Alignment.topLeft,
-          //   end: Alignment.bottomRight
-          // )
         ),
         child: TextButton(
           onPressed: (){},
@@ -98,6 +96,36 @@ class _AppBar extends StatelessWidget {
   } 
 }
 
+class Header extends StatelessWidget {
+  
+  @override
+  Widget build(BuildContext context) {
+    int r = 255;
+    int g = 255;
+    int b = 255;
+    return Stack(
+      children: [
+        Container(
+              width: double.infinity,
+              height: MediaQuery.of(context).size.height * 0.2,
+              child: CustomPaint(
+                painter: _HeaderWaveGradientPainter(),
+            )
+          ),
+          Positioned(
+            top: 35,
+            child: Text('  FELIZ CUMPLEAÑOS MARTINA',
+              style: TextStyle(fontSize: 25,
+              fontWeight: FontWeight.w800,
+              color: Color.fromRGBO(r, g, b, 0.8),
+              )
+            ),
+          )
+      ],
+    );
+  }
+}
+
 class _BodyScroll extends StatelessWidget {
   const _BodyScroll({
     Key? key,
@@ -115,7 +143,7 @@ class _BodyScroll extends StatelessWidget {
 
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 10),
-      margin: EdgeInsets.only(top: screenHeight * 0.18),
+      margin: EdgeInsets.only(top: screenHeight * 0.15),
       child: ListView.builder(
         itemCount: cards.length,
         itemBuilder: (context, index){
@@ -133,4 +161,52 @@ class _BodyScroll extends StatelessWidget {
       )
     );
   }
+}
+
+class _HeaderWaveGradientPainter extends CustomPainter{
+
+  @override
+  void paint(Canvas canvas, Size size) {
+
+    double x = size.width;
+    double y  = size.height * 5;
+    final Rect rect = Rect.fromCircle(
+     center: Offset(size.width * 0.5 ,55),
+     radius: 180
+    );
+
+    final Gradient gradient = LinearGradient(
+      begin: Alignment.topCenter,
+      end: Alignment.bottomCenter,
+      colors: [
+        Color(0xff615AAB), 
+        Color(0xffC012FF),
+        Color(0xff6D05FA),
+    ]
+    );
+
+    final lapiz = Paint()..shader = gradient.createShader(rect);
+    
+    lapiz.color = Colors.red;
+    lapiz.style = PaintingStyle.fill;
+    lapiz.strokeWidth = 20;
+
+    final path = Path();
+    
+    
+    path.lineTo(0, y * 0.16);
+    path.lineTo(x, y * 0.16);
+    path.lineTo(x, 0);
+    
+
+    canvas.drawPath(path, lapiz);
+    
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) {
+
+    return true;
+  }
+
 }

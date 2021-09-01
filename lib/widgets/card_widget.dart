@@ -22,7 +22,8 @@ class CardWidget extends StatelessWidget {
       width: screenWidth * 0.8 ,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
-        color: Colors.red
+        color: MyTheme.secondaryCreateCardPageColor
+        //TODO: aplicar Gradiente
       ),
       child: Column(
         children: [
@@ -81,7 +82,7 @@ class NameText extends StatelessWidget {
     return Text(
           title,
           style: TextStyle(
-            color: MyTheme.containerTextColor,
+            color: Color.fromRGBO(255, 255, 255, 0.8),
             fontSize: 25,
             fontWeight: FontWeight.w700
           ),
