@@ -1,10 +1,10 @@
 
-import 'dart:math';
 import 'dart:ui';
 
 import 'package:cumple_mar/pages/loading_page.dart';
 import 'package:cumple_mar/services/cards_services.dart';
 import 'package:cumple_mar/widgets/card_widget.dart';
+import 'package:cumple_mar/widgets/cuadrado_animado_widget.dart';
 import 'package:flutter/material.dart';
 
 import 'package:cumple_mar/theme/theme.dart';
@@ -25,10 +25,34 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       body:Stack(
         children: [
-          _BodyScroll(),
-          _AppBar(),
+          _BackGround(),
+          CuadradoAnimado(),
+          //_BodyScroll(),
+          //_AppBar(),
         ],
       )
+    );
+  }
+}
+
+class _BackGround extends StatelessWidget {
+  const _BackGround({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [
+            Color(0Xff2e305f),
+            Color(0xff202333),
+          ],
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+        )
+      ),
     );
   }
 }
