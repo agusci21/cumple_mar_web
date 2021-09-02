@@ -42,17 +42,19 @@ class Picture extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
+  final sh = MediaQuery.of(context).size.height;
     return Container(
-      width: 140,
-      height: 140,
+      width: sh * 0.185,
+      height: sh * 0.185,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(100)
+        borderRadius: BorderRadius.circular(100),
+        color: Color.fromRGBO(255, 255, 255, 0),
+        image: DecorationImage(
+          image: NetworkImage(photoUrl),
+          fit: BoxFit.cover
+        )
       ),
-      child: Image(
-        //height: ,
-        image: NetworkImage(photoUrl),
-        fit: BoxFit.cover,
-      ),
+       
     );
   }
 }
