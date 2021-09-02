@@ -17,8 +17,9 @@ class CardWidget extends StatelessWidget {
    
     double screenWidth = MediaQuery.of(context).size.width;
     return Container(
+      padding: EdgeInsets.only(top: 8),
       decoration: BoxDecoration(
-        color: Colors.red,
+        color: Color.fromRGBO(62, 66, 107, 0.7),
         borderRadius: BorderRadius.circular(25)
       ),
       child: Column(
@@ -42,13 +43,13 @@ class Picture extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin:EdgeInsets.only(top: 5) ,
       width: 140,
       height: 140,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(100)
       ),
       child: Image(
+        //height: ,
         image: NetworkImage(photoUrl),
         fit: BoxFit.cover,
       ),

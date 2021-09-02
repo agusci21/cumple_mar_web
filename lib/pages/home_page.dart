@@ -168,14 +168,35 @@ class _BodyScroll extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 10),
       //margin: EdgeInsets.only(top: screenHeight * 0.15),
-      child: GridView.builder(
-        gridDelegate:SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                crossAxisSpacing: 5.0,
-                mainAxisSpacing: 5.0,
-              ), 
-        itemCount: cards.length,
-        itemBuilder: (context, index){
+      child: CustomScrollView(
+  slivers: <Widget>[
+
+    //SLIDER MARGEN
+
+    SliverGrid(
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 10,
+        mainAxisSpacing: 5.0,
+        crossAxisSpacing: 5.0,
+      ),
+      delegate: SliverChildBuilderDelegate(
+        (BuildContext context, int index) {
+          return Container(
+            
+          );
+        },
+        childCount: 70,
+      ),
+    ),
+
+    SliverGrid(
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        mainAxisSpacing: 7.0,
+        crossAxisSpacing: 7.0,
+      ),
+      delegate: SliverChildBuilderDelegate(
+        (context, index){
         return GestureDetector(
           onTap: (){
             cardService.selectedCard = cards[index];
@@ -187,7 +208,14 @@ class _BodyScroll extends StatelessWidget {
           ),
         );
       },
-      )
+        childCount: cards.length,
+      ),
+    ),
+    
+  ],
+)
+      
+       
       //_listView(cards, cardService)
     );
   }
