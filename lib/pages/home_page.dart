@@ -27,7 +27,7 @@ class HomePage extends StatelessWidget {
         children: [
           _BackGround(),
           CuadradoAnimado(),
-          //_BodyScroll(),
+          _BodyScroll(),
           //_AppBar(),
         ],
       )
@@ -167,22 +167,46 @@ class _BodyScroll extends StatelessWidget {
 
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 10),
-      margin: EdgeInsets.only(top: screenHeight * 0.15),
-      child: ListView.builder(
+      //margin: EdgeInsets.only(top: screenHeight * 0.15),
+      child: GridView.builder(
+        gridDelegate:SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                crossAxisSpacing: 5.0,
+                mainAxisSpacing: 5.0,
+              ), 
         itemCount: cards.length,
         itemBuilder: (context, index){
-          return GestureDetector(
-            onTap: (){
-              cardService.selectedCard = cards[index];
-              Navigator.of(context).pushNamed('/imposibleToGuessCardPage');
-            },
-            child: CardWidget(
-              title: cards[index].name,
-              photoUrl: cards[index].picture ?? 'https://i.imgur.com/jJ8NnQ4.gif',
-            ),
-          );
-        },
+        return GestureDetector(
+          onTap: (){
+            cardService.selectedCard = cards[index];
+            Navigator.of(context).pushNamed('/imposibleToGuessCardPage');
+          },
+          child: CardWidget(
+            title: cards[index].name,
+            photoUrl: cards[index].picture ?? 'https://i.imgur.com/jJ8NnQ4.gif',
+          ),
+        );
+      },
       )
+      //_listView(cards, cardService)
+    );
+  }
+
+  ListView _listView(List<Cards> cards, CardsService cardService) {
+    return ListView.builder(
+      itemCount: cards.length,
+      itemBuilder: (context, index){
+        return GestureDetector(
+          onTap: (){
+            cardService.selectedCard = cards[index];
+            Navigator.of(context).pushNamed('/imposibleToGuessCardPage');
+          },
+          child: CardWidget(
+            title: cards[index].name,
+            photoUrl: cards[index].picture ?? 'https://i.imgur.com/jJ8NnQ4.gif',
+          ),
+        );
+      },
     );
   }
 }

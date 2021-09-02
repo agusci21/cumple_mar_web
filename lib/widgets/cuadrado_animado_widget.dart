@@ -48,15 +48,19 @@ class _CuadradoAnimadoState extends State<CuadradoAnimado> with SingleTickerProv
 
     controller.forward();
 
-    return AnimatedBuilder(
-     animation: controller,
-     child: _Rectangulo(),
-     builder: (BuildContext context, Widget? child){
-       return Transform.rotate(
-         angle: girar.value,
-         child: child,
-       );
-     }
+    return Positioned(
+      top: -MediaQuery.of(context).size.height * 0.07,
+      left: -MediaQuery.of(context).size.height * 0.07,
+      child: AnimatedBuilder(
+       animation: controller,
+       child: _Rectangulo(),
+       builder: (BuildContext context, Widget? child){
+         return Transform.rotate(
+           angle: girar.value,
+           child: child,
+         );
+       }
+      ),
     );
   }
 }
@@ -65,8 +69,8 @@ class _Rectangulo extends StatelessWidget {
     @override
     Widget build(BuildContext context) {
     return Container(
-       width: MediaQuery.of(context).size.width * 0.8,
-       height: MediaQuery.of(context).size.width * 0.8,
+       width: MediaQuery.of(context).size.width * 0.89,
+       height: MediaQuery.of(context).size.width * 0.89,
        decoration: BoxDecoration(
          borderRadius: BorderRadius.circular(50),
          gradient: LinearGradient(
