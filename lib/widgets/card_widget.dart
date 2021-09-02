@@ -17,18 +17,14 @@ class CardWidget extends StatelessWidget {
    
     double screenWidth = MediaQuery.of(context).size.width;
     return Container(
-      margin: EdgeInsets.all(5),
-      padding: EdgeInsets.symmetric(vertical: 20, horizontal: 15),
-      width: screenWidth * 0.8 ,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(15),
-        color: MyTheme.secondaryCreateCardPageColor
-        //TODO: aplicar Gradiente
+        color: Colors.red,
+        borderRadius: BorderRadius.circular(25)
       ),
       child: Column(
         children: [
           Picture(photoUrl: photoUrl),
-          NameText(title: title),
+          NameText(title: title)
         ],
       ),
     );
@@ -45,25 +41,16 @@ class Picture extends StatelessWidget {
   
   @override
   Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(25),
-            topRight: Radius.circular(25),
-          ),
-      child: Container(
-        height: MediaQuery.of(context).size.height * 0.5,
-        width: MediaQuery.of(context).size.height * 0.5,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(25),
-            topRight: Radius.circular(25),
-          )
-        ),
-        child: FadeInImage(
-          fit: BoxFit.cover,
-          image: NetworkImage(photoUrl) ,
-          placeholder:AssetImage('assets/img/placeholderGif.gif') ,
-        ),
+    return Container(
+      margin:EdgeInsets.only(top: 5) ,
+      width: 140,
+      height: 140,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(100)
+      ),
+      child: Image(
+        image: NetworkImage(photoUrl),
+        fit: BoxFit.cover,
       ),
     );
   }
@@ -83,7 +70,7 @@ class NameText extends StatelessWidget {
           title,
           style: TextStyle(
             color: Color.fromRGBO(255, 255, 255, 0.8),
-            fontSize: 25,
+            fontSize: 20,
             fontWeight: FontWeight.w700
           ),
         );
