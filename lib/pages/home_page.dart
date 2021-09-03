@@ -27,10 +27,37 @@ class HomePage extends StatelessWidget {
         children: [
           _BackGround(),
           CuadradoAnimado(),
+          _HappyBirthDayText(),
           _BodyScroll(),
-          //_AppBar(),
         ],
       )
+    );
+  }
+}
+
+class _HappyBirthDayText extends StatelessWidget {
+  const _HappyBirthDayText({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Positioned(
+      left: -15,
+      top: MediaQuery.of(context).size.height * 0.02,
+      child: Transform.rotate(
+        angle: -0.5,
+        child: Container(
+          child: Text(
+            '      Feliz   \n    Cumpleaños     \n  Martina Rigoti Quel',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 50,
+              fontFamily: 'Allison'
+            ),
+          ),
+        ),
+      ),
     );
   }
 }
