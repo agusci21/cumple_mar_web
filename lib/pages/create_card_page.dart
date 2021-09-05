@@ -61,6 +61,7 @@ class _DemoCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final double sh = MediaQuery.of(context).size.height;
     final double sw = MediaQuery.of(context).size.width;
+    final validationService = Provider.of<ValidationService>(context);
 
     return Container(
       padding: EdgeInsets.all(10),
@@ -87,7 +88,7 @@ class _DemoCard extends StatelessWidget {
           Container(height: sw * 0.05,),
 
           Text(
-            'Franco Agustin Cola ',
+            validationService.name ?? 'Su nombre',
             style: TextStyle(
               color: Colors.white,
               fontSize: 25
@@ -113,18 +114,40 @@ class _Inputs extends StatelessWidget {
       width: sw * 0.85,
       child: Column(
         children: [
+
           TextFormField(
+            maxLines: 1,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            cursorColor: Colors.white,
+            style: TextStyle(color: Colors.white),
             controller: validationService.nameController,
             keyboardType: TextInputType.name,
             textCapitalization: TextCapitalization.words,
             decoration: InputDecoration(
-              labelText: 'Nombre',
-              labelStyle: TextStyle(color: Colors.white, fontSize: 25),
-              hintText: 'Ingresa tu Nombre',
+              contentPadding: EdgeInsets.symmetric(horizontal: 16),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(20),
+                borderSide: BorderSide(
+                  width: 2,
+                  color: Colors.white
+                )
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderSide: BorderSide(
+                  width: 2,
+                  color: Colors.white
+                )
+              ),
+              labelText: 'Ingresa tu Nombre',
+              labelStyle: TextStyle(color: Colors.white, fontSize: 20),
+              //hintText: 'Ingresa tu Nombre',
               hintStyle: TextStyle(color: Colors.white),
               fillColor: Colors.white,
               hoverColor: Colors.white
             ),
+            onChanged: (value){
+              validationService.setName(value);
+            },
           )
         ],
       ),

@@ -6,7 +6,7 @@ class MyTheme{
   
   static Color primaryColor = Color.fromRGBO(57, 53, 52, 1);
 
-  static Color secondaryColor = Color.fromRGBO(247, 14, 89, 1);
+  static Color secondaryColor = Color.fromRGBO(247, 14, 89, 0.8);
 
   static Color primaryTextColor = Color.fromRGBO(255, 76, 165, 1);
 
