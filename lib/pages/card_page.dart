@@ -12,8 +12,6 @@ class CardPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    final cardsService = Provider.of<CardsService>(context);
-
     return Scaffold(
       
       body: Stack(

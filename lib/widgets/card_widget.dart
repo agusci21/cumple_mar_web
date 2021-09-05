@@ -1,4 +1,4 @@
-import 'package:cumple_mar/theme/theme.dart';
+
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
@@ -15,7 +15,6 @@ class CardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
    
-    double screenWidth = MediaQuery.of(context).size.width;
     return Container(
       padding: EdgeInsets.only(top: 8),
       decoration: BoxDecoration(

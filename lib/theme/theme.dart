@@ -20,8 +20,6 @@ class MyTheme{
 
   static Color secondaryCreateCardPageColor = Color.fromRGBO(245, 30, 255, 0.8);
 
-  //TODO: Implementar fuentes
-
   //static Color secondaryColor = Color(0xD11BC5);
 
   //static String primaryFont = 'Allison';
