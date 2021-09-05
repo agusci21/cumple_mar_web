@@ -1,8 +1,7 @@
 
-import 'dart:ui';
-
 import 'package:cumple_mar/pages/loading_page.dart';
 import 'package:cumple_mar/services/cards_services.dart';
+import 'package:cumple_mar/theme/theme.dart';
 import 'package:cumple_mar/widgets/card_widget.dart';
 import 'package:cumple_mar/widgets/cuadrado_animado_widget.dart';
 import 'package:flutter/material.dart';
@@ -71,10 +70,7 @@ class _BackGround extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: [
-            Color(0Xff2e305f),
-            Color(0xff202333),
-          ],
+          colors: MyTheme.gradientColors,
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
         )

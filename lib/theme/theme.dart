@@ -20,6 +20,11 @@ class MyTheme{
 
   static Color secondaryCreateCardPageColor = Color.fromRGBO(245, 30, 255, 0.8);
 
+  static List<Color> gradientColors =[
+    Color(0Xff2e305f),
+    Color(0xff202333),
+  ];
+
   //static Color secondaryColor = Color(0xD11BC5);
 
   //static String primaryFont = 'Allison';

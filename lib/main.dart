@@ -4,6 +4,7 @@ import 'package:cumple_mar/pages/create_card_page.dart';
 import 'package:cumple_mar/pages/home_page.dart';
 import 'package:cumple_mar/pages/loading_page.dart';
 import 'package:cumple_mar/services/cards_services.dart';
+import 'package:cumple_mar/services/validations_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -17,7 +18,8 @@ class AppState extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => CardsService() ),
+        ChangeNotifierProvider(create: (_) => CardsService()),
+        ChangeNotifierProvider(create: (_) => ValidationService())
       ],
       child: MyApp(),
     );
