@@ -47,7 +47,7 @@ class _HappyBirthDayText extends StatelessWidget {
         angle: -0.5,
         child: Container(
           child: Text(
-            '      Feliz   \n    Cumpleaños     \n  Martina Rigoti Quel',
+            '      Feliz   \n    Cumpleaños     \n  Martina Rigotti Quel',
             style: TextStyle(
               color: Colors.white,
               fontSize: 50,
