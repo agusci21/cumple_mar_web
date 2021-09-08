@@ -89,20 +89,7 @@ class _Message extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-   int random = Random().nextInt(5);
-   
-   switch(random){
-      case 0:
-        return Text('$message Te desea Feliz CUM');
-      case 1:
-        return Text('$message Te desea Feliz Cumpleaños');
-      case 3:
-        return Text('$message Te envia Saludos');
-      case 4:
-        return Text('$message Te Envia Alegria');
-      case 5:
-        return Text('$message Te Aprecia Muchisimo (Como todos)');
-   }
+  
     return Container(
       child: Text(
         message

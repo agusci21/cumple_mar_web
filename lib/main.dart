@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Cumpleaños Martina',
-      initialRoute: '/home',
+      initialRoute: '/create',
       routes: {
         '/home' : (BuildContext context) => HomePage(),
         '/imposibleToGuessCardPage' : (BuildContext context) => CardPage(),

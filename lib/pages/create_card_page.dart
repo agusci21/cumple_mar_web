@@ -1,3 +1,5 @@
+import 'package:cumple_mar/models/cards_model.dart';
+import 'package:cumple_mar/services/cards_services.dart';
 import 'package:cumple_mar/services/validations_service.dart';
 import 'package:cumple_mar/theme/theme.dart';
 import 'package:cumple_mar/widgets/card_widget.dart';
@@ -45,7 +47,8 @@ class _Body extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
               _DemoCard(),
-              _Inputs()
+              _Inputs(),
+              _SendButtom(),
             ],
           ),
         ),
@@ -130,7 +133,7 @@ class _Inputs extends StatelessWidget {
       child: Column(
         children: [
 
-          _NameInput(validationService: validationService),
+          _NameInput(),
 
           SizedBox(height: sh * 0.05),
 
@@ -168,6 +171,7 @@ class _EditableText extends StatelessWidget {
         },
         controller: validationService.messajeController,
         maxLines: 10,
+        autovalidateMode: AutovalidateMode.onUserInteraction,
         cursorColor: Colors.white,
         style: TextStyle(
           color: Colors.white,
@@ -200,6 +204,12 @@ class _EditableText extends StatelessWidget {
           )
          ),
         ),
+        validator: (value){
+          if(value != null && value.length > 10)
+            return null;
+          if(value == null || value.isEmpty || value.length < 9)
+            return 'Por favor, dejale un mensaje a Martina';
+        }
       )
     );
   }
@@ -217,15 +227,10 @@ class Buttoms extends StatelessWidget {
 }
 
 class _NameInput extends StatelessWidget {
-  const _NameInput({
-    Key? key,
-    required this.validationService,
-  }) : super(key: key);
-
-  final ValidationService validationService;
-
+  
   @override
   Widget build(BuildContext context) {
+    final validationService = Provider.of<ValidationService>(context);
     return TextFormField(
       maxLines: 1,
       autovalidateMode: AutovalidateMode.onUserInteraction,
@@ -235,6 +240,7 @@ class _NameInput extends StatelessWidget {
       keyboardType: TextInputType.name,
       textCapitalization: TextCapitalization.words,
       decoration: InputDecoration(
+        errorStyle: TextStyle(fontSize: 17),
         contentPadding: EdgeInsets.symmetric(horizontal: 16),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(100),
@@ -258,6 +264,71 @@ class _NameInput extends StatelessWidget {
       onChanged: (value){
         validationService.setName(value);
       },
+      validator: (value){
+        if (value != null && value.length > 3 && value.length < 13)
+          return null;
+        if( value == null || value.isEmpty || value == ' ' || value == '  ' || value == '   ')
+          return 'Por favor, Completa con tu nombre';
+        if(value.length < 3)
+          return 'Tu nombre es muy corto';
+        if(value.length > 14 )
+          return 'Tu nombre es muy Largo';
+      },
+    );
+  }
+}
+
+class _SendButtom extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+    final cardsService = Provider.of<CardsService>(context);
+    final validationService = Provider.of<ValidationService>(context);
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(100),
+      child: MaterialButton(
+        
+        child: Container(
+          padding: EdgeInsets.symmetric(horizontal: 50, vertical: 5),
+          margin: EdgeInsets.only(top: 20, bottom: 10),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(100),
+            gradient: LinearGradient(
+              colors: [
+                Colors.pink,
+                Colors.purple
+              ],
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight
+            )
+          ),
+          child: Text(
+            'Enviar Carta',
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 55,
+              fontFamily: 'Allison'
+            ),
+          ),
+        ),
+        onPressed: (){
+          if(validationService.createCardKey.currentState!.validate()){
+            cardsService.finalName = validationService.name as String;
+            cardsService.finalMenssaje = validationService.messaje as String;
+            Cards cards = new Cards(
+             message: cardsService.finalMenssaje,
+             name: cardsService.finalName
+          );
+           cardsService.createCard(cards);
+           ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Todo salio bien')));
+        } else{
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Hay errores')));
+        }
+         
+          //TODO quitar en navigator
+          //Navigator.pushNamed(context, '/home');
+        },
+      ),
     );
   }
 }
