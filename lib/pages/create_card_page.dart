@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:cumple_mar/models/cards_model.dart';
 import 'package:cumple_mar/services/cards_services.dart';
 import 'package:cumple_mar/services/validations_service.dart';
@@ -89,15 +91,20 @@ class _DemoCard extends StatelessWidget {
               height: sw * 0.45,
               width: sw * 0.45,
               decoration: BoxDecoration(
-                color: Colors.white,
+                gradient: LinearGradient(
+                  colors: [
+                    Colors.pink,
+                    Colors.purple
+                  ]
+                ),
                 borderRadius: BorderRadius.circular(100),
               ),
               child: Column(
                 children: [
                   Container(height: sh * 0.03,),
-                  Icon(Icons.camera_alt, color: Colors.black,size: 50,),
+                  Icon(Icons.camera_alt, color: Colors.white70,size: 50,),
                   Container(height: sh * 0.02,),
-                  Text('Ingresá tu foto',style: TextStyle(fontSize: 22),)
+                  Text('Ingresá tu foto',style: TextStyle(fontSize: 22, color: Colors.white), )
                 ],
               ),
             ),
@@ -158,7 +165,6 @@ class _EditableText extends StatelessWidget {
     final double sh = MediaQuery.of(context).size.height;
     final double sw = MediaQuery.of(context).size.width;
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 0, horizontal: 0),
       height: sh * 0.3,
       width: sw * 0.9,
       decoration: BoxDecoration(
@@ -178,6 +184,30 @@ class _EditableText extends StatelessWidget {
           fontSize: 17
         ),
         decoration: InputDecoration(
+
+          contentPadding: EdgeInsets.all(10),
+
+          focusedErrorBorder:OutlineInputBorder(
+          borderRadius: BorderRadius.circular(25),
+           borderSide: BorderSide(
+              width: 2,
+              color: Colors.red.shade900
+          )
+        ), 
+
+          errorStyle: TextStyle(
+            color: Colors.red.shade900,
+            fontSize: 2,
+          ),
+
+          errorBorder:OutlineInputBorder(
+          borderRadius: BorderRadius.circular(25),
+           borderSide: BorderSide(
+              width: 2,
+              color: Colors.red.shade900
+          )
+        ), 
+
           alignLabelWithHint: true,
           labelText: 'Tu Mensaje',
           hintStyle: TextStyle(
@@ -207,8 +237,10 @@ class _EditableText extends StatelessWidget {
         validator: (value){
           if(value != null && value.length > 10)
             return null;
-          if(value == null || value.isEmpty || value.length < 9)
-            return 'Por favor, dejale un mensaje a Martina';
+          if(value == null || value.isEmpty)
+            return 'Por favor, dejale un mensaje ';
+          if(value.length < 9)
+            return 'Deja un mensaje mas largo';
         }
       )
     );
