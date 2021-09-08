@@ -47,7 +47,7 @@ class _HappyBirthDayText extends StatelessWidget {
         angle: -0.5,
         child: Container(
           child: Text(
-            '      Feliz   \n    Cumpleaños     \n  Martina Rigotti Quel',
+            '      Feliz   \n    Cumpleaños     \nMartina Rigotti Quel',
             style: TextStyle(
               color: Colors.white,
               fontSize: 50,
@@ -102,7 +102,7 @@ class _BodyScroll extends StatelessWidget {
     SliverGrid(
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 10,
-        mainAxisSpacing: 5.0,
+        mainAxisSpacing: 11,
         crossAxisSpacing: 5.0,
       ),
       delegate: SliverChildBuilderDelegate(

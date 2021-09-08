@@ -185,7 +185,7 @@ class _EditableText extends StatelessWidget {
         ),
         decoration: InputDecoration(
 
-          contentPadding: EdgeInsets.all(10),
+          contentPadding: EdgeInsets.only(top: 30, left: 20),
 
           focusedErrorBorder:OutlineInputBorder(
           borderRadius: BorderRadius.circular(25),
@@ -234,13 +234,23 @@ class _EditableText extends StatelessWidget {
           )
          ),
         ),
+
         validator: (value){
-          if(value != null && value.length > 10)
-            return null;
-          if(value == null || value.isEmpty)
-            return 'Por favor, dejale un mensaje ';
-          if(value.length < 9)
+          if(value == null || value.isEmpty){
+            return 'Por favor, dejale un mensaje';
+          }else if(value.length > 19){
             return 'Deja un mensaje mas largo';
+          }else if(value != null && value.length > 20){
+            return null;
+          }
+          
+            
+          // if(value != null && value.length > 10)
+          //   return null;
+          // if(value == null || value.isEmpty)
+          //   return 'Por favor, dejale un mensaje ';
+          // if(value.length < 9)
+          //   return 'Deja un mensaje mas largo';
         }
       )
     );
