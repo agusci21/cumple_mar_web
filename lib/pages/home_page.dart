@@ -118,8 +118,8 @@ class _BodyScroll extends StatelessWidget {
     SliverGrid(
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
-        mainAxisSpacing: 7.0,
-        crossAxisSpacing: 7.0,
+        mainAxisSpacing: 10.0,
+        crossAxisSpacing: 10.0,
       ),
       delegate: SliverChildBuilderDelegate(
         (context, index){

@@ -1,4 +1,6 @@
 
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
@@ -15,17 +17,23 @@ class CardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
    
-    return Container(
-      padding: EdgeInsets.only(top: 8),
-      decoration: BoxDecoration(
-        color: Color.fromRGBO(62, 66, 107, 0.7),
-        borderRadius: BorderRadius.circular(25)
-      ),
-      child: Column(
-        children: [
-          Picture(photoUrl: photoUrl),
-          NameText(title: title)
-        ],
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(25),
+      child: BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+        child: Container(
+          padding: EdgeInsets.only(top: 8),
+          decoration: BoxDecoration(
+            color: Color.fromRGBO(62, 66, 107, 0.7),
+            borderRadius: BorderRadius.circular(25)
+          ),
+          child: Column(
+            children: [
+              Picture(photoUrl: photoUrl),
+              NameText(title: title)
+            ],
+          ),
+        ),
       ),
     );
   }

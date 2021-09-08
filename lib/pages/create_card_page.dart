@@ -80,7 +80,7 @@ class _DemoCard extends StatelessWidget {
 
           GestureDetector(
             onTap: (){
-              print('acaa');
+              //TODO: Pedir permisos para tomar fotografias
             },
             child: Container(
               height: sw * 0.45,
@@ -165,7 +165,6 @@ class _EditableText extends StatelessWidget {
       child: TextFormField(
         onChanged: (value){
           validationService.setMessaje(value);
-          print(validationService.messaje);
         },
         controller: validationService.messajeController,
         maxLines: 10,
