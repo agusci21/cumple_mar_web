@@ -41,7 +41,6 @@ class _Body extends StatelessWidget {
                     children: [
                       // Nombre
                       Container(
-                        color: Colors.red,
                         margin: EdgeInsets.all(10),
                         child: Text(
                           _randomMessage(context),
@@ -52,7 +51,6 @@ class _Body extends StatelessWidget {
 
                       //Mensaje
                       Container(
-                        color: Colors.red,
                         padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
                         alignment: Alignment.center,
                         child: Center(
