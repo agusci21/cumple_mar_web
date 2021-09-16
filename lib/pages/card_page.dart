@@ -1,180 +1,108 @@
-
-import 'dart:math';
-
 import 'package:cumple_mar/services/cards_services.dart';
-import 'package:cumple_mar/widgets/card_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'dart:math';
+
 
 class CardPage extends StatelessWidget {
-  const CardPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
-      
-      body: Stack(
-        children: [
-          Stack(
-            children: [
-              _BodyScroll(),
-              Header(),
-            ],
-          ),
-        ],
-      ),
-    );
+      backgroundColor: Color.fromRGBO(62, 66, 107, 0.7),
+      body: _Body(),
+   );
   }
 }
 
-class _BodyScroll extends StatelessWidget {
-  const _BodyScroll({
-    Key? key,
-  }) : super(key: key);
+class _Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-  final screen = MediaQuery.of(context).size;
-  int random = Random().nextInt(5);
-  final cardsService = Provider.of<CardsService>(context);
-    var textStyle = TextStyle(
-      fontSize: 19,
-      fontWeight: FontWeight.w600,
-      color: Colors.black
-    );
-    return Container(
-      color: Colors.white,
-      width: double.infinity,
-      height: double.infinity,
-      child: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            SizedBox(height: screen.height * 0.2,),
-            (cardsService.selectedCard.picture == null)
-            ? Image(image: AssetImage('assets/img/no-image.png'))
-            :Picture(photoUrl:cardsService.selectedCard.picture as String),
+    final ss = MediaQuery.of(context).size;
+    final cardsService = Provider.of<CardsService>(context);
+    return CustomScrollView(
+      slivers: [
 
-            (random == 0) ? Text('${cardsService.selectedCard.name} Te desea Feliz CUM', style: textStyle)
-            : (random == 1) ? Text('${cardsService.selectedCard.name} Te desea Feliz Cumpleaños', style: textStyle)
-             :(random == 2) ? Text('${cardsService.selectedCard.name} Te desea Feliz Cumpleaños', style: textStyle)
-              :(random == 3) ? Text('${cardsService.selectedCard.name} Te envia Saludos', style: textStyle)
-               :(random == 4) ? Text('${cardsService.selectedCard.name} Te Aprecia Muchisimo \n(Como todos)', style: textStyle)
-                : Text('${cardsService.selectedCard.name} Te Envia Alegria', style: textStyle),
+        SliverAppBar(
+          expandedHeight: ss.height * 0.3,
+          flexibleSpace: Image(
+            image: NetworkImage(cardsService.selectedCard.picture ?? 'https://i.imgur.com/jJ8NnQ4.gif'),
+            fit: BoxFit.cover,
+          ),
+        ),
 
-            SizedBox(height: screen.height * 0.05 ,),
-            _Message(
-              message: cardsService.selectedCard.message
+        SliverList(
+            delegate: SliverChildBuilderDelegate(
+              (BuildContext context, int index) {
+                return Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      // Nombre
+                      Container(
+                        color: Colors.red,
+                        margin: EdgeInsets.all(10),
+                        child: Text(
+                          _randomMessage(context),
+                          textAlign: TextAlign.center,
+                          style: TextStyle(color: Colors.white, fontSize: 25),
+                        ),
+                      ),
+
+                      //Mensaje
+                      Container(
+                        color: Colors.red,
+                        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+                        alignment: Alignment.center,
+                        child: Center(
+                          child: Text(
+                            cardsService.selectedCard.message,
+                            style: TextStyle(color: Colors.white, fontSize: 20),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      )
+
+                    ],
+                  ),
+                );
+              },
+              childCount: 1
             ),
-
-      
-          ],
-        ),
-      ),
-    );
-  }
-
-}
-  
-
-class _Message extends StatelessWidget {
-  
-  const _Message({
-    Key? key,
-    required this.message,
-  }) : super(key: key);
-
-  final String message;
-
-  @override
-  Widget build(BuildContext context) {
-  
-    return Container(
-      child: Text(
-        message
-      ),
-    );
-  }
-}
-
-class Header extends StatelessWidget {
-  const Header({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        Container(
-          width: double.infinity,
-          height: MediaQuery.of(context).size.height * 0.2,
-          child: CustomPaint(
-            painter: _HeaderWaveGradientPainter(),
-          )
-        ),
-        Positioned(
-          top: MediaQuery.of(context).size.height * 0.05,
-          child: IconButton(
-            onPressed: () => Navigator.pop(context),
-            icon: Icon(
-              Icons.arrow_back,
-              size: 35,
-              color: Color.fromRGBO(255, 255, 255, 0.8),
-            )
           ),
-        )
       ],
     );
   }
-}
+  String _randomMessage(BuildContext context){
+    final cardsService = Provider.of<CardsService>(context);
+    int x = Random().nextInt(4);
+    late String random;
+    switch(x){
 
-class _HeaderWaveGradientPainter extends CustomPainter{
+      case 0:
+        random = 'Te desea un Feliz Cumpleaños';
+      break;
+      
+      case 1:
+        random = 'Te desea un Feliz Cum';
+      break;
 
-  @override
-  void paint(Canvas canvas, Size size) {
+      case 2:
+        random = 'Te Aprecia un Monton';
+      break;
 
-    double x = size.width;
-    double y  = size.height * 5;
-    final Rect rect = Rect.fromCircle(
-     center: Offset(size.width * 0.5 ,55),
-     radius: 180
-    );
+      case 3:
+        random = 'Te considera una persona Super importante en su vida';
+      break;
 
-    final Gradient gradient = LinearGradient(
-      begin: Alignment.topCenter,
-      end: Alignment.bottomCenter,
-      colors: [
-        Color(0xff615AAB), 
-        Color(0xffC012FF),
-        Color(0xff6D05FA),
-    ]
-    );
+      case 4:
+        random = 'Cree que sos una persona increible';
+      break;
 
-    final lapiz = Paint()..shader = gradient.createShader(rect);
-    
-    lapiz.color = Colors.red;
-    lapiz.style = PaintingStyle.fill;
-    lapiz.strokeWidth = 20;
-
-    final path = Path();
-    
-    
-    path.lineTo(0, y * 0.15);
-    path.quadraticBezierTo(x * 0.25, y * 0.2, x * 0.5, y * 0.15);
-    path.quadraticBezierTo(x * 0.75, y * 0.1, x, y * 0.15);
-    path.lineTo(x, 0);
-    
-
-    canvas.drawPath(path, lapiz);
-    
+      default:
+        random = '';
+    }
+    return '${cardsService.selectedCard.name} $random';
   }
-
-  @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) {
-
-    return true;
-  }
-
 }
-
-

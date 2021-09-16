@@ -19,20 +19,17 @@ class CardWidget extends StatelessWidget {
    
     return ClipRRect(
       borderRadius: BorderRadius.circular(25),
-      child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
-        child: Container(
-          padding: EdgeInsets.only(top: 8),
-          decoration: BoxDecoration(
-            color: Color.fromRGBO(62, 66, 107, 0.7),
-            borderRadius: BorderRadius.circular(25)
-          ),
-          child: Column(
-            children: [
-              Picture(photoUrl: photoUrl),
-              NameText(title: title)
-            ],
-          ),
+      child: Container(
+        padding: EdgeInsets.only(top: 8),
+        decoration: BoxDecoration(
+          color: Color.fromRGBO(62, 66, 107, 0.7),
+          borderRadius: BorderRadius.circular(25)
+        ),
+        child: Column(
+          children: [
+            Picture(photoUrl: photoUrl),
+            NameText(title: title)
+          ],
         ),
       ),
     );
