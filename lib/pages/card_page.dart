@@ -35,35 +35,32 @@ class _Body extends StatelessWidget {
         SliverList(
             delegate: SliverChildBuilderDelegate(
               (BuildContext context, int index) {
-                return Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      // Nombre
-                      Container(
-                        margin: EdgeInsets.all(10),
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    // Nombre
+                    Container(
+                      margin: EdgeInsets.all(10),
+                      child: Text(
+                        _randomMessage(context),
+                        textAlign: TextAlign.center,
+                        style: TextStyle(color: Colors.white, fontSize: 25),
+                      ),
+                    ),
+
+                    //Mensaje
+                    Container(
+                      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+                      alignment: Alignment.center,
+                      child: Center(
                         child: Text(
-                          _randomMessage(context),
+                          cardsService.selectedCard.message,
+                          style: TextStyle(color: Colors.white, fontSize: 20),
                           textAlign: TextAlign.center,
-                          style: TextStyle(color: Colors.white, fontSize: 25),
                         ),
                       ),
-
-                      //Mensaje
-                      Container(
-                        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
-                        alignment: Alignment.center,
-                        child: Center(
-                          child: Text(
-                            cardsService.selectedCard.message,
-                            style: TextStyle(color: Colors.white, fontSize: 20),
-                            textAlign: TextAlign.center,
-                          ),
-                        ),
-                      )
-
-                    ],
-                  ),
+                    )
+                  ],
                 );
               },
               childCount: 1
